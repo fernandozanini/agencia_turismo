@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tipos de Venda</h1>
+<%= link_to 'Novo Tipo Venda', new_tipo_venda_path %>
+<table class="lista-tabela-index">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ativo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tipos_venda.each do |tipo_venda| %>
+    <tr>
+      <td><%= tipo_venda.nome %></td>
+      <td class="texto-centralizado"><%= retornar_sim_nao(tipo_venda.ativo) %></td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to  tipo_venda_path(tipo_venda), { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#olho") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to edit_tipo_venda_path(tipo_venda) , { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lapis") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to tipo_venda_path(tipo_venda), { class: 'acoes-tabelas', method: :delete, data: { confirm: 'Você tem certeza?' } } do%>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lixo-1") %>" />
+        </svg>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

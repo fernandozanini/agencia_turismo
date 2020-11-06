@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Editar', edit_venda_path(@venda) %> |
+<%= link_to 'Voltar', vendas_path %>
+
+<p>
+  <strong>Data venda:</strong>
+  <%= l(@venda.data_venda) %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @venda.cliente.nome %>
+</p>
+
+<p>
+  <strong>Tipo venda:</strong>
+  <%= @venda.tipo_venda.nome %>
+</p>
+
+<p>
+  <strong>Data utilizacao:</strong>
+  <%= l(@venda.data_utilizacao) %>
+</p>
+
+<p>
+  <strong>Empresa:</strong>
+  <%= @venda.empresa.nome %>
+</p>
+
+<p>
+  <strong>Tipo pagamento:</strong>
+  <%= @venda.tipo_pagamento.nome %>
+</p>
+
+<p>
+  <strong>Localizador:</strong>
+  <%= @venda.localizador %>
+</p>
+
+<p>
+  <strong>Viajante:</strong>
+  <%= @venda.viajante.nome %>
+</p>
+
+<p>
+  <strong>Forma pagamento:</strong>
+  <%= @venda.forma_pagamento.nome %>
+</p>
+
+<p>
+  <strong>Qtd parcelas:</strong>
+  <%= @venda.qtd_parcelas %>
+</p>
+
+<p>
+  <strong>Custo:</strong>
+  <%= number_to_currency(@venda.custo) %>
+</p>
+
+<p>
+  <strong>Venda:</strong>
+  <%= number_to_currency(@venda.venda) %>
+</p>
+
+<p>
+  <strong>Lucro:</strong>
+  <%= number_to_currency(@venda.lucro) %>
+</p>
+
+<p>
+  <strong>Lucro porcentagem:</strong>
+  <%= @venda.lucro_porcentagem %>
+</p>
+
+<p>
+  <strong>Data recebimento:</strong>
+  <%= l(@venda.data_recebimento) if @venda.data_recebimento.present? %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @venda.status %>
+</p>

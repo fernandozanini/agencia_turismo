@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Novo Viajante', new_viajante_path %>
+
+
+<h1>Viajantes</h1>
+
+<table class="lista-tabela-index">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Rg</th>
+      <th>Cpf</th>
+      <th>Data nascimento</th>
+      <th>Passaporte</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @viajantes.each do |viajante| %>
+    <tr>
+      <td><%= viajante.nome %></td>
+      <td><%= viajante.rg %></td>
+      <td class="texto-centralizado"><%= viajante.cpf %></td>
+      <td class="texto-centralizado"><%= l(viajante.data_nascimento) %></td>
+      <td class="texto-centralizado"><%= viajante.passaporte %></td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to  viajante_path(viajante), { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#olho") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to edit_viajante_path(viajante) , { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lapis") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to viajante_path(viajante), { class: 'acoes-tabelas', method: :delete, data: { confirm: 'Você tem certeza?' } } do%>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lixo-1") %>" />
+        </svg>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

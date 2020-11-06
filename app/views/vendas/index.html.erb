@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Nova Venda', new_venda_path %>
+<h1>Vendas</h1>
+
+<table class="lista-tabela-index">
+  <thead>
+    <tr>
+      <th>Data da venda</th>
+      <th>Cliente</th>
+      <th>Tipo da venda</th>
+      <th>Data da utilização</th>
+      <th>Empresa</th>
+      <th>Tipo de pagamento</th>
+      <th>Localizador</th>
+      <th>Viajante</th>
+      <th>Forma de pagamento</th>
+      <th>Qtd parcelas</th>
+      <th>Custo</th>
+      <th>Venda</th>
+      <th>Lucro</th>
+      <th>Lucro %</th>
+      <th>Data do Recebimento</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vendas.each do |venda| %>
+    <tr>
+      <td class="texto-centralizado"><%= l(venda.data_venda) %></td>
+      <td><%= venda.cliente.nome %></td>
+      <td><%= venda.tipo_venda.nome %></td>
+      <td class="texto-centralizado"><%= l(venda.data_utilizacao) %></td>
+      <td><%= venda.empresa.nome %></td>
+      <td><%= venda.tipo_pagamento.nome %></td>
+      <td><%= venda.localizador %></td>
+      <td><%= venda.viajante.nome %></td>
+      <td><%= venda.forma_pagamento.nome %></td>
+      <td class="texto-centralizado"><%= venda.qtd_parcelas %></td>
+      <td class="texto-esquerda"><%= number_to_currency(venda.custo) %></td>
+      <td class="texto-esquerda"><%= number_to_currency(venda.venda) %></td>
+      <td class="texto-centralizado"><%= number_to_currency(venda.lucro) %></td>
+      <td class="texto-centralizado"><%= venda.lucro_porcentagem %></td>
+      <td class="texto-centralizado"><%= venda.data_recebimento %></td>
+      <td><%= venda.status %></td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to  venda_path(venda), { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#olho") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to edit_venda_path(venda) , { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lapis") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to venda_path(venda), { class: 'acoes-tabelas', method: :delete, data: { confirm: 'Você tem certeza?' } } do%>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lixo-1") %>" />
+        </svg>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

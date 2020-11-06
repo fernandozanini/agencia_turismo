@@ -1,0 +1,43 @@
+<h2>Promoções de Milhas</h2>
+<%= form_with url: promocoes_path, method: 'GET', class: 'form-pesquisa', local: true, html: {id: 'search_form'} do |form| %>
+<div class="campos">
+    <%= form.label :sites, 'Site de Promoção:'%>
+    <%= form.select(:sites, @sites, selected: params[:sites]) %>
+</div>
+<div>
+    <%= submit_tag "Pesquisar" %>
+</div>
+
+<% end %>
+<div>
+    <% if @resultados.present? %>
+    <h2><%= @resultados.nome_site %> - Pontuação: <%= @resultados.pontuacao_teto %></h2>
+    <table class="lista-tabela-index">
+        <thead>
+            <tr>
+                <th>Código/Nome</th>
+                <th>Pontuacao/Preço</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <th>Termos</th>
+                <th>URL site</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @resultados.dados.each do |promocao| %>
+            <tr>
+                <td><%= promocao[:codigo] %></td>
+                <td class="texto-centralizado">
+                    <%= promocao[:pontuacao] %>
+                    <%= '| ' + number_to_currency(promocao[:preco] .to_f) if  promocao[:preco].present? %>
+                </td>
+                <td class="texto-centralizado"><%= promocao[:data_inicial] %></td>
+                <td class="texto-centralizado"><%= promocao[:data_final] %></td>
+                <td><%= promocao[:termos] %></td>
+                <td><%= promocao[:url] %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <% end %>
+</div>

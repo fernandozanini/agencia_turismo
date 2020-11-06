@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Novo Site', new_site_path %>
+<h1>Sites de Promoções</h1>
+
+<table class="lista-tabela-index">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Url</th>
+      <th>Código</th>
+      <th>Teto de Pontuação</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+    <tr>
+      <td><%= site.nome %></td>
+      <td><%= site.url %></td>
+      <td><%= site.codigo %></td>
+      <td><%= site.teto_pontuacao %></td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to  site_path(site), { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#olho") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to edit_site_path(site) , { class: 'acoes-tabelas'} do %>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lapis") %>" />
+        </svg>
+        <% end %>
+      </td>
+      <td class="coluna-acoes-tabela">
+        <%= link_to site_path(site), { class: 'acoes-tabelas', method: :delete, data: { confirm: 'Você tem certeza?' } } do%>
+        <svg class="ico">
+          <use xlink:href="<%= asset_path("ico.svg#lixo-1") %>" />
+        </svg>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

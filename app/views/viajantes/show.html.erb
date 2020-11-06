@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Editar', edit_viajante_path(@viajante) %> |
+<%= link_to 'Voltar', viajantes_path %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @viajante.nome %>
+</p>
+
+<p>
+  <strong>R.G:</strong>
+  <%= @viajante.rg %>
+</p>
+
+<p>
+  <strong>CPF:</strong>
+  <%= @viajante.cpf %>
+</p>
+
+<p>
+  <strong>Data Nascimento:</strong>
+  <%= l(@viajante.data_nascimento) %>
+</p>
+
+<p>
+  <strong>Passaporte:</strong>
+  <%= @viajante.passaporte %>
+</p>

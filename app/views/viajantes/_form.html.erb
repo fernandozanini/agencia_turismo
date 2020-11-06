@@ -1,0 +1,58 @@
+<%= form_with(model: viajante, local: true) do |form| %>
+<% if viajante.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(viajante.errors.count, "error") %> impediram de salvar:</h2>
+
+  <ul>
+    <% viajante.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :nome %>
+  <%= form.text_field :nome, required: true %>
+</div>
+
+<div class="field">
+  <%= form.label :rg %>
+  <%= form.text_field :rg %>
+</div>
+
+<div class="field">
+  <%= form.label :cpf %>
+  <%= form.text_field :cpf %>
+</div>
+
+<div class="field">
+  <%= form.label :data_nascimento %>
+  <input id="viajante_data_nascimento" name="viajante[data_nascimento]" type="date"
+    value="<%= viajante.data_nascimento if viajante.data_nascimento.present? %>">
+</div>
+
+<div class="field">
+  <%= form.label :passaporte %>
+  <%= form.text_field :passaporte %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>
+
+<script>
+  document.getElementById("viajante_cpf").addEventListener("keypress", function (e) {
+    if (
+      e.metaKey || // cmd/ctrl
+      e.which <= 0 || // arrow keys
+      e.which == 8 || // delete key
+      /[^0-9]/.test(String.fromCharCode(e.which))
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  $("#viajante_cpf").mask("999.999.999-99");
+</script>

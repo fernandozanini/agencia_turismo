@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Editar', edit_tipo_pagamento_path(@tipo_pagamento) %> |
+<%= link_to 'Voltar', tipo_pagamentos_path %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @tipo_pagamento.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= retornar_sim_nao(@tipo_pagamento.ativo) %>
+</p>
+
+<p>
+  <strong>Observação:</strong>
+  <%= @tipo_pagamento.observacao %>
+</p>

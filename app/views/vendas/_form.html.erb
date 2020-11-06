@@ -1,0 +1,115 @@
+<%= form_with(model: venda, local: true) do |form| %>
+<% if venda.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(venda.errors.count, "error") %> prohibited this venda from being saved:</h2>
+
+  <ul>
+    <% venda.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :data_venda %>
+  <input id="venda_data_venda" name="venda[data_venda]" type="date" required
+    value="<%= venda.data_venda if venda.data_venda.present? %>">
+</div>
+
+<div class="field">
+  <%= form.label :cliente_id %>
+  <%= form.select(:cliente_id, @clientes.map{|cliente| [cliente.nome,cliente.id]}, selected: venda.cliente_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :tipo_venda_id %>
+  <%= form.select(:tipo_venda_id, @tipos_venda.map{|tipo| [tipo.nome,tipo.id]}, selected: venda.tipo_venda_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :data_utilizacao %>
+  <input id="venda_data_utilizacao" name="venda[data_utilizacao]" type="date"
+    value="<%= venda.data_utilizacao if venda.data_utilizacao.present? %>" required>
+</div>
+
+<div class="field">
+  <%= form.label :empresa_id %>
+  <%= form.select(:empresa_id, @empresas.map{|empresa| [empresa.nome,empresa.id]}, selected: venda.empresa_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :tipo_pagamento_id %>
+  <%= form.select(:tipo_pagamento_id, @tipos_pagamento.map{|tipo| [tipo.nome,tipo.id]}, selected: venda.tipo_pagamento_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :localizador %>
+  <%= form.text_field :localizador %>
+</div>
+
+<div class="field">
+  <%= form.label :viajante_id %>
+  <%= form.select(:viajante_id, @viajantes.map{|viajante| [viajante.nome,viajante.id]}, selected: venda.viajante_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :forma_pagamento_id %>
+  <%= form.select(:forma_pagamento_id, @formas_pagamento.map{|forma| [forma.nome,forma.id]}, selected: venda.forma_pagamento_id) %>
+</div>
+
+<div class="field">
+  <%= form.label :qtd_parcelas %>
+  <%= form.number_field :qtd_parcelas %>
+</div>
+
+<div class="field">
+  <%= form.label :custo %>
+  <%= form.text_field :custo, class: 'money' %>
+</div>
+
+<div class="field">
+  <%= form.label :venda %>
+  <%= form.text_field :venda, class: 'money' %>
+</div>
+
+<div class="field">
+  <%= form.label :lucro %>
+  <%= form.text_field :lucro, class: 'money' %>
+</div>
+
+<div class="field">
+  <%= form.label :lucro_porcentagem %>
+  <%= form.text_field :lucro_porcentagem %>
+</div>
+
+<div class="field">
+  <%= form.label :data_recebimento %>
+  <input id="venda_data_recebimento" name="venda[data_recebimento]" type="date"
+    value="<%= venda.data_recebimento if venda.data_recebimento.present? %>">
+</div>
+
+<div class="field">
+  <%= form.label :status %>
+  <%= form.number_field :status %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>
+
+<script>
+  $('.money').mask("#.##0,00", { reverse: true });
+
+  document.getElementById("venda_venda").addEventListener("blur", function (e) {
+    console.log("entrou")
+    console.log($('#venda_venda').value)
+    console.log($('#venda_custo'))
+    if ($('#venda_venda')[0].value != undefined && $('#venda_custo')[0].value != undefined) {
+      valor = (parseFloat($('#venda_venda')[0].value.replace('.', '').replace(',', '.')) - parseFloat($('#venda_custo')[0].value.replace('.', '').replace(',', '.'))).toFixed(2)
+      $('#venda_lucro')[0].value = (valor + '').replace('.', ',')
+    }
+
+  });
+</script>

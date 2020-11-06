@@ -1,0 +1,2 @@
+module TipoVendasHelper
+end

@@ -1,0 +1,48 @@
+.container-conteudo {
+    .form-pesquisa {
+        .campos {
+            display: flex;
+
+            select,
+            input {
+                margin-left: .5rem;
+            }
+        }
+    }
+
+    .lista-tabela-index {
+        width: 100%;
+        margin-top: 2%;
+        overflow-x: auto;
+        font-size: 0.8rem;
+
+        th {
+            background-color: #f2f2f2;
+            padding: 0.5rem;
+            color: #087f23;
+        }
+
+        td {
+            padding: .5rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .coluna-acoes-tabela {
+            width: .8rem;
+            padding: .5rem;
+
+
+            .acoes-tabelas {
+
+                img,
+                svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+            }
+        }
+    }
+}

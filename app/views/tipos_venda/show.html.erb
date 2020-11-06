@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Editar', edit_tipo_venda_path(@tipo_venda) %> |
+<%= link_to 'Voltar', tipos_venda_path %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @tipo_venda.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= retornar_sim_nao(@tipo_venda.ativo) %>
+</p>

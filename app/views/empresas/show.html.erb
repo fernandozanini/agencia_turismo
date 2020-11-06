@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Editar', edit_empresa_path(@empresa) %> |
+<%= link_to 'Voltar', empresas_path %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @empresa.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= retornar_sim_nao(@empresa.ativo) %>
+</p>
+
+<p>
+  <strong>Observação:</strong>
+  <%= @empresa.observacao %>
+</p>
